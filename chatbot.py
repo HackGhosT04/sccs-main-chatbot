@@ -30,7 +30,9 @@ app.add_middleware(
 
 
 # Environment configuration
-OPENROUTER_API_KEY = "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"
+OPENROUTER_API_KEY = os.getenv("OPENROUTER_API_KEY")
+if not OPENROUTER_API_KEY:
+    raise RuntimeError("OpenRouter API key not set in environment")
 MODEL_VERSION = "openai/gpt-3.5-turbo-16k"  # Higher context window
 
 class ChatRequest(BaseModel):
@@ -337,3 +339,4 @@ async def chat_endpoint(request: ChatRequest):
         logger.error(f"Unexpected error: {str(e)}")
 
         return {"reply": "Apologies, I'm experiencing technical difficulties. Please contact help@ump.ac.za for immediate support."}
+
