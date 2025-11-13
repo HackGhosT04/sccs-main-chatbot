@@ -33,7 +33,7 @@ app.add_middleware(
 OPENROUTER_API_KEY = os.getenv("OPENROUTER_API_KEY")
 if not OPENROUTER_API_KEY:
     raise RuntimeError("OpenRouter API key not set in environment")
-MODEL_VERSION = "openai/gpt-3.5-turbo-16k
+MODEL_VERSION = "openai/gpt-3.5-turbo-16k"
 
 class ChatRequest(BaseModel):
     message: str
@@ -339,6 +339,7 @@ async def chat_endpoint(request: ChatRequest):
         logger.error(f"Unexpected error: {str(e)}")
 
         return {"reply": "Apologies, I'm experiencing technical difficulties. Please contact help@ump.ac.za for immediate support."}
+
 
 
 
